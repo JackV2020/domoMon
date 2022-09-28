@@ -1,3 +1,5 @@
+2.0.1
+- Added support for SubType "Selector Switch" (Report Level as %)
 2.0.0
 - Initial was for Custom Sensors only. Now support all devices with 1 numeric/text value.
 - Limits can now be used for strings to search in text values.

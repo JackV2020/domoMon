@@ -275,13 +275,15 @@ App {
 // Try to get data from 'Data' or from 'Level', maybe other fields need to be added in future
 
                                 try {
-                                    deviceValue[ii] = dataJSON['result'][0]['Data']
-                                    value_ok = true;
-                                } catch(e) {
                                     if (SubType == "Selector Switch") {
                                         deviceValue[ii] = dataJSON['result'][0]['Level']+" %";
                                         value_ok = true;
+                                    } else {
+                                        deviceValue[ii] = dataJSON['result'][0]['Data']
+                                        value_ok = true;
                                     }
+                                } catch(e) {
+                                    value_ok = false;
                                 }
 // Alarming
                                 if ( ! value_ok ) {
