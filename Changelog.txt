@@ -1,0 +1,13 @@
+2.0.0
+- Initial was for Custom Sensors only. Now support all devices with 1 numeric/text value.
+- Limits can now be used for strings to search in text values.
+- Settings Screen : Scroll setting enables/disables Tile to scroll in dim state.
+1.0.3
+- In dimmed state show only first page. (so put most interesting counters on first page)
+1.0.2
+- Limits Screen : Field color yellow when in use, blue for low alarm and red for high alarm.
+- Settings Screen : changing an idx will initiate the collecting of the Domoticz device name.
+1.0.1
+- Improved timer handling. (no activity when tile / screen is not shown)
+1.0.0
+- first public release
