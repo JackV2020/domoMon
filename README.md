@@ -26,11 +26,14 @@ Since my values fit in 2 sets of 6, the Tile only pages between these 2 sets. Em
  - To show and configure everything this app has 3 screens :
     - 1 Tile showing 1 set of 6 Device at a time ( max 3 sets which it automatically pages between ) 
          The tile gives access to the Search Strings/Limits screen.
+         On the tile data is collected from Domoticz every 60 seconds.
     - 1 Search Strings/Limits screen where optional search strings/lower and upper limits can be configured.
          When a value crosses a limit or contains a string the tile gets a color, more details on this below.
          The Limits screen gives access to the Settings screen.
+         On this screen data is collected from Domoticz every 5 seconds.
     - 1 Settings screen to configure the Domoticz connection and up to 3 sets of 6 Custom Sensors idx values and names.
-         The update interval is in seconds and you can toggle the paging behaviour of the tile.
+         The page scroll interval for the tile is in seconds and you can toggle the paging behaviour of the tile.
+         On this screen data is collected from Domoticz every 5 seconds.
 
 When the app arrives in the store installing will be like for any other app.
 

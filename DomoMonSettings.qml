@@ -553,7 +553,7 @@ Screen {
 
     Text {
         id: intervalLabel
-        text: "Update Interval"
+        text: "Page Scroll Interval"
         anchors {
             top: parent.top
             horizontalCenter: set2.horizontalCenter
@@ -589,7 +589,7 @@ Screen {
 
     Text {
         id: domoMonScrollText
-        text: "Dim state pages"
+        text: "Scroll in Dim state"
         anchors {
             top: domoticzInterval.bottom
             topMargin: isNxt ? 10 : 8
@@ -1205,7 +1205,6 @@ Screen {
 			}
 		onClicked: {
 			qkeyboard.open("The idx for device 18<br>(enter a space to clear)", idx18Label.buttonText, saveIdx18);
-            refreshScreen()
 		}
 	}
 

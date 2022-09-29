@@ -214,6 +214,8 @@ App {
 
     function readDomoticzdevicesData()  {
 
+//        log("Reading Data")
+        
         var connectionPath = ipAddress + ":" + httpPort;
 
         if ( connectionPath.length > 4 ) {
@@ -333,10 +335,21 @@ App {
 
 // ---------- Timer and refresh routine
 
-// Timer in ms
+// Timer in ms 60 seconds
 
 	Timer {
-		id: datetimeTimer
+		id: readDomoticzDataTimer
+		interval: 60000
+		running: activeMe
+		repeat: true
+		onTriggered: readDomoticzdevicesData()
+	}
+
+
+// Timer in ms domoInterval seconds
+
+	Timer {
+		id: tileUpdateTimer
 		interval: domoInterval * 1000
 		running: activeMe
 		repeat: true
@@ -344,8 +357,6 @@ App {
 	}
 
 	function refreshScreen() {
-
-        readDomoticzdevicesData()
 
         if (dimState && freezeScroll) { scrollCounter = 0 }
 
