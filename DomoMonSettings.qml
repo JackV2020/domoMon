@@ -23,6 +23,7 @@ Screen {
 	property string	activeColor: "lightgrey"
 	property string	hoverColor: "lightblue"
 	property string	selectedColor : "yellow"
+	property string	disabledColor : "grey"
 
     property string     trueColor: "lightgreen"
     property string     falseColor: "#EF3C40"
@@ -99,6 +100,27 @@ Screen {
 		idx17Label.buttonText = app.deviceIdx[16];
 		idx18Label.buttonText = app.deviceIdx[17];
 
+		device1Label.enabled = app.deviceIdx[0] != "";
+		device2Label.enabled = app.deviceIdx[1] != "";
+		device3Label.enabled = app.deviceIdx[2] != "";
+		device4Label.enabled = app.deviceIdx[3] != "";
+		device5Label.enabled = app.deviceIdx[4] != "";
+		device6Label.enabled = app.deviceIdx[5] != "";
+
+		device7Label.enabled = app.deviceIdx[6] != "";
+		device8Label.enabled = app.deviceIdx[7] != "";
+		device9Label.enabled = app.deviceIdx[8] != "";
+		device10Label.enabled = app.deviceIdx[9] != "";
+		device11Label.enabled = app.deviceIdx[10] != "";
+		device12Label.enabled = app.deviceIdx[11] != "";
+
+		device13Label.enabled = app.deviceIdx[12] != "";
+		device14Label.enabled = app.deviceIdx[13] != "";
+		device15Label.enabled = app.deviceIdx[14] != "";
+		device16Label.enabled = app.deviceIdx[15] != "";
+		device17Label.enabled = app.deviceIdx[16] != "";
+		device18Label.enabled = app.deviceIdx[17] != "";
+
 		device1Label.buttonText = app.deviceName[0];
 		device2Label.buttonText = app.deviceName[1];
 		device3Label.buttonText = app.deviceName[2];
@@ -171,7 +193,7 @@ Screen {
             if (text.trim() != idx1Label.buttonText ) {
                 idx1Label.buttonText = text.trim();
                 app.deviceIdx[0] = text.trim();
-                if (text.trim() == "" ) { saveDevice1(" ") }
+                if (text.trim() == "" ) { saveDevice1(" ") ; app.deviceLolim[0] = "" ; app.deviceHilim[0] = "" }
                 else { saveDevice1("..wait......") }
             }
 		}
@@ -182,7 +204,7 @@ Screen {
             if (text.trim() != idx2Label.buttonText ) {
                 idx2Label.buttonText = text.trim();
                 app.deviceIdx[1] = text.trim();
-                if (text.trim() == "" ) { saveDevice2(" ") }
+                if (text.trim() == "" ) { saveDevice2(" "); app.deviceLolim[1] = "" ; app.deviceHilim[1] = "" }
                 else { saveDevice2("..wait......") }
             }
 		}
@@ -192,7 +214,7 @@ Screen {
             if (text.trim() != idx3Label.buttonText ) {
                 idx3Label.buttonText = text.trim();
                 app.deviceIdx[2] = text.trim();
-                if (text.trim() == "" ) { saveDevice3(" ") }
+                if (text.trim() == "" ) { saveDevice3(" "); app.deviceLolim[2] = "" ; app.deviceHilim[2] = "" }
                 else { saveDevice3("..wait......") }
             }
 		}
@@ -202,7 +224,7 @@ Screen {
             if (text.trim() != idx4Label.buttonText ) {
                 idx4Label.buttonText = text.trim();
                 app.deviceIdx[3] = text.trim();
-                if (text.trim() == "" ) { saveDevice4(" ") }
+                if (text.trim() == "" ) { saveDevice4(" "); app.deviceLolim[3] = "" ; app.deviceHilim[3] = "" }
                 else { saveDevice4("..wait......") }
             }
 		}
@@ -212,7 +234,7 @@ Screen {
             if (text.trim() != idx5Label.buttonText ) {
                 idx5Label.buttonText = text.trim();
                 app.deviceIdx[4] = text.trim();
-                if (text.trim() == "" ) { saveDevice5(" ") }
+                if (text.trim() == "" ) { saveDevice5(" "); app.deviceLolim[4] = "" ; app.deviceHilim[4] = "" }
                 else { saveDevice5("..wait......") }
             }
 		}
@@ -222,7 +244,7 @@ Screen {
             if (text.trim() != idx6Label.buttonText ) {
                 idx6Label.buttonText = text.trim();
                 app.deviceIdx[5] = text.trim();
-                if (text.trim() == "" ) { saveDevice6(" ") }
+                if (text.trim() == "" ) { saveDevice6(" "); app.deviceLolim[5] = "" ; app.deviceHilim[5] = "" }
                 else { saveDevice6("..wait......") }
             }
 		}
@@ -232,7 +254,7 @@ Screen {
             if (text.trim() != idx7Label.buttonText ) {
                 idx7Label.buttonText = text.trim();
                 app.deviceIdx[6] = text.trim();
-                if (text.trim() == "" ) { saveDevice7(" ") }
+                if (text.trim() == "" ) { saveDevice7(" "); app.deviceLolim[6] = "" ; app.deviceHilim[6] = "" }
                 else { saveDevice7("..wait......") }
             }
 		}
@@ -242,7 +264,7 @@ Screen {
             if (text.trim() != idx8Label.buttonText ) {
                 idx8Label.buttonText = text.trim();
                 app.deviceIdx[7] = text.trim();
-                if (text.trim() == "" ) { saveDevice8(" ") }
+                if (text.trim() == "" ) { saveDevice8(" "); app.deviceLolim[7] = "" ; app.deviceHilim[7] = "" }
                 else { saveDevice8("..wait......") }
             }
 		}
@@ -252,7 +274,7 @@ Screen {
             if (text.trim() != idx9Label.buttonText ) {
                 idx9Label.buttonText = text.trim();
                 app.deviceIdx[8] = text.trim();
-                if (text.trim() == "" ) { saveDevice9(" ") }
+                if (text.trim() == "" ) { saveDevice9(" "); app.deviceLolim[8] = "" ; app.deviceHilim[8] = "" }
                 else { saveDevice9("..wait......") }
             }
 		}
@@ -262,7 +284,7 @@ Screen {
             if (text.trim() != idx10Label.buttonText ) {
                 idx10Label.buttonText = text.trim();
                 app.deviceIdx[9] = text.trim();
-                if (text.trim() == "" ) { saveDevice10(" ") }
+                if (text.trim() == "" ) { saveDevice10(" "); app.deviceLolim[9] = "" ; app.deviceHilim[9] = "" }
                 else { saveDevice10("..wait......") }
             }
 		}
@@ -272,7 +294,7 @@ Screen {
             if (text.trim() != idx11Label.buttonText ) {
                 idx11Label.buttonText = text.trim();
                 app.deviceIdx[10] = text.trim();
-                if (text.trim() == "" ) { saveDevice11(" ") }
+                if (text.trim() == "" ) { saveDevice11(" "); app.deviceLolim[10] = "" ; app.deviceHilim[10] = "" }
                 else { saveDevice11("..wait......") }
             }
 		}
@@ -282,7 +304,7 @@ Screen {
             if (text.trim() != idx12Label.buttonText ) {
                 idx12Label.buttonText = text.trim();
                 app.deviceIdx[11] = text.trim();
-                if (text.trim() == "" ) { saveDevice12(" ") }
+                if (text.trim() == "" ) { saveDevice12(" "); app.deviceLolim[11] = "" ; app.deviceHilim[11] = "" }
                 else { saveDevice12("..wait......") }
             }
 		}
@@ -292,7 +314,7 @@ Screen {
             if (text.trim() != idx13Label.buttonText ) {
                 idx13Label.buttonText = text.trim();
                 app.deviceIdx[12] = text.trim();
-                if (text.trim() == "" ) { saveDevice13(" ") }
+                if (text.trim() == "" ) { saveDevice13(" "); app.deviceLolim[12] = "" ; app.deviceHilim[12] = "" }
                 else { saveDevice13("..wait......") }
             }
 		}
@@ -302,7 +324,7 @@ Screen {
             if (text.trim() != idx14Label.buttonText ) {
                 idx14Label.buttonText = text.trim();
                 app.deviceIdx[13] = text.trim();
-                if (text.trim() == "" ) { saveDevice14(" ") }
+                if (text.trim() == "" ) { saveDevice14(" "); app.deviceLolim[13] = "" ; app.deviceHilim[13] = "" }
                 else { saveDevice14("..wait......") }
             }
 		}
@@ -312,7 +334,7 @@ Screen {
             if (text.trim() != idx15Label.buttonText ) {
                 idx15Label.buttonText = text.trim();
                 app.deviceIdx[14] = text.trim();
-                if (text.trim() == "" ) { saveDevice15(" ") }
+                if (text.trim() == "" ) { saveDevice15(" "); app.deviceLolim[14] = "" ; app.deviceHilim[14] = "" }
                 else { saveDevice15("..wait......") }
             }
 		}
@@ -322,7 +344,7 @@ Screen {
             if (text.trim() != idx16Label.buttonText ) {
                 idx16Label.buttonText = text.trim();
                 app.deviceIdx[15] = text.trim();
-                if (text.trim() == "" ) { saveDevice16(" ") }
+                if (text.trim() == "" ) { saveDevice16(" "); app.deviceLolim[15] = "" ; app.deviceHilim[15] = "" }
                 else { saveDevice16("..wait......") }
             }
 		}
@@ -332,7 +354,7 @@ Screen {
             if (text.trim() != idx17Label.buttonText ) {
                 idx17Label.buttonText = text.trim();
                 app.deviceIdx[16] = text.trim();
-                if (text.trim() == "" ) { saveDevice17(" ") }
+                if (text.trim() == "" ) { saveDevice17(" "); app.deviceLolim[16] = "" ; app.deviceHilim[16] = "" }
                 else { saveDevice17("..wait......") }
             }
 		}
@@ -342,7 +364,7 @@ Screen {
             if (text.trim() != idx18Label.buttonText ) {
                 idx18Label.buttonText = text.trim();
                 app.deviceIdx[17] = text.trim();
-                if (text.trim() == "" ) { saveDevice18(" ") }
+                if (text.trim() == "" ) { saveDevice18(" "); app.deviceLolim[17] = "" ; app.deviceHilim[17] = "" }
                 else { saveDevice18("..wait......") }
             }
 		}
@@ -1232,6 +1254,7 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
+        buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
@@ -1254,6 +1277,7 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
+        buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
@@ -1276,6 +1300,7 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
+        buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
@@ -1298,6 +1323,7 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
+        buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
@@ -1320,6 +1346,7 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
+        buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
@@ -1342,6 +1369,7 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
+        buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
@@ -1380,6 +1408,7 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
+        buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
@@ -1402,6 +1431,7 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
+        buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
@@ -1424,6 +1454,7 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
+        buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
@@ -1446,6 +1477,7 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
+        buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
@@ -1468,6 +1500,7 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
+        buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
@@ -1490,6 +1523,7 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
+        buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
@@ -1528,6 +1562,7 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
+        buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
@@ -1550,6 +1585,7 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
+        buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
@@ -1572,6 +1608,7 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
+        buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
@@ -1594,6 +1631,7 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
+        buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
@@ -1616,6 +1654,7 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
+        buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
@@ -1638,6 +1677,7 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
+        buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"

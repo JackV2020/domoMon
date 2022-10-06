@@ -28,10 +28,12 @@ Since my values fit in 2 sets of 6, the Tile only pages between these 2 sets. Em
          The tile gives access to the Search Strings/Limits screen.
          On the tile data is collected from Domoticz every 60 seconds.
     - 1 Search Strings/Limits screen where optional search strings/lower and upper limits can be configured.
+         ( A field is empty and disabled when the idx is not defined on the Settings screen screen )
          When a value crosses a limit or contains a string the tile gets a color, more details on this below.
          The Limits screen gives access to the Settings screen.
          On this screen data is collected from Domoticz every 5 seconds.
     - 1 Settings screen to configure the Domoticz connection and up to 3 sets of 6 Custom Sensors idx values and names.
+         Name fields are empty/emtied and disabled when the corresponding idx is empty/emptied.
          The page scroll interval for the tile is in seconds and you can toggle the paging behaviour of the tile.
          On this screen data is collected from Domoticz every 5 seconds.
 
@@ -58,7 +60,7 @@ To configure :
  - Now enter an idx of a Custom Sensor and the name of the Custom Sensor will be retrieved for you. Just wait...
  - When the idx does not exist it can not find the name and the name stays on wait...
  - You can change the name or just leave it for now. It may be too long for the tile and you may change it later.
- - To clear an idx you edit the field and put a space in it and save it. The name field will be cleared for you.
+ - To clear an idx you edit the field and put a space in it and save it. The name field and the limits will be cleared for you.
  - When you change an idx the new name will be retrieved for you. Just wait....
  - When you clear the name field by putting a space in it, the name will be retrieved from Domoticz again.
  - To save settings you need to click the Save button in the upper right corner.

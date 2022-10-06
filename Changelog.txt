@@ -1,3 +1,5 @@
+2.0.2
+- Clear and disable fields for limits and names when idx is empty/emptied
 2.0.1
 - Added support for SubType "Selector Switch" (Report Level as %)
 2.0.0

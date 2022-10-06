@@ -59,6 +59,8 @@ Screen {
     property string    activeColor: "lightgrey"
     property string    hoverColor: "lightblue"
     property string    selectedColor : "yellow"
+	property string	   disabledColor : "grey"
+    
     property string    loAlarmColor : "#6666ff"
     property string    hiAlarmColor : "#ff6666"
 
@@ -117,6 +119,44 @@ Screen {
         device15Label.text = app.deviceName[15];
         device16Label.text = app.deviceName[16];
         device17Label.text = app.deviceName[17];
+
+        device0Lolim.enabled = app.deviceIdx[0] != ""
+        device1Lolim.enabled = app.deviceIdx[1] != ""
+        device2Lolim.enabled = app.deviceIdx[2] != ""
+        device3Lolim.enabled = app.deviceIdx[3] != ""
+        device4Lolim.enabled = app.deviceIdx[4] != ""
+        device5Lolim.enabled = app.deviceIdx[5] != ""
+        device6Lolim.enabled = app.deviceIdx[6] != ""
+        device7Lolim.enabled = app.deviceIdx[7] != ""
+        device8Lolim.enabled = app.deviceIdx[8] != ""
+        device9Lolim.enabled = app.deviceIdx[9] != ""
+        device10Lolim.enabled = app.deviceIdx[10] != ""
+        device11Lolim.enabled = app.deviceIdx[11] != ""
+        device12Lolim.enabled = app.deviceIdx[12] != ""
+        device13Lolim.enabled = app.deviceIdx[13] != ""
+        device14Lolim.enabled = app.deviceIdx[14] != ""
+        device15Lolim.enabled = app.deviceIdx[15] != ""
+        device16Lolim.enabled = app.deviceIdx[16] != ""
+        device17Lolim.enabled = app.deviceIdx[17] != "";
+
+        device0Hilim.enabled = app.deviceIdx[0] != ""
+        device1Hilim.enabled = app.deviceIdx[1] != ""
+        device2Hilim.enabled = app.deviceIdx[2] != ""
+        device3Hilim.enabled = app.deviceIdx[3] != ""
+        device4Hilim.enabled = app.deviceIdx[4] != ""
+        device5Hilim.enabled = app.deviceIdx[5] != ""
+        device6Hilim.enabled = app.deviceIdx[6] != ""
+        device7Hilim.enabled = app.deviceIdx[7] != ""
+        device8Hilim.enabled = app.deviceIdx[8] != ""
+        device9Hilim.enabled = app.deviceIdx[9] != ""
+        device10Hilim.enabled = app.deviceIdx[10] != ""
+        device11Hilim.enabled = app.deviceIdx[11] != ""
+        device12Hilim.enabled = app.deviceIdx[12] != ""
+        device13Hilim.enabled = app.deviceIdx[13] != ""
+        device14Hilim.enabled = app.deviceIdx[14] != ""
+        device15Hilim.enabled = app.deviceIdx[15] != ""
+        device16Hilim.enabled = app.deviceIdx[16] != ""
+        device17Hilim.enabled = app.deviceIdx[17] != ""
 
         device0Lolim.selected = app.deviceLolim[0] != ""
         device1Lolim.selected = app.deviceLolim[1] != ""
@@ -852,6 +892,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( loAlarm0 ) ? loAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -872,6 +913,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( loAlarm1 ) ? loAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -892,6 +934,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( loAlarm2 ) ? loAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -912,6 +955,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( loAlarm3 ) ? loAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -932,6 +976,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( loAlarm4 ) ? loAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -952,6 +997,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( loAlarm5 ) ? loAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -974,6 +1020,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( loAlarm6 ) ? loAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -994,6 +1041,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( loAlarm7 ) ? loAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1014,6 +1062,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( loAlarm8 ) ? loAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1034,6 +1083,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( loAlarm9 ) ? loAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1054,6 +1104,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( loAlarm10 ) ? loAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1074,6 +1125,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( loAlarm11 ) ? loAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1096,6 +1148,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( loAlarm12 ) ? loAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1116,6 +1169,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( loAlarm13 ) ? loAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1136,6 +1190,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( loAlarm14 ) ? loAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1156,6 +1211,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( loAlarm15 ) ? loAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1176,6 +1232,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( loAlarm16 ) ? loAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1196,6 +1253,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( loAlarm17 ) ? loAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1218,6 +1276,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( hiAlarm0 ) ? hiAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1238,6 +1297,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( hiAlarm1 ) ? hiAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1258,6 +1318,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( hiAlarm2 ) ? hiAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1278,6 +1339,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( hiAlarm3 ) ? hiAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1298,6 +1360,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( hiAlarm4 ) ? hiAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1318,6 +1381,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( hiAlarm5 ) ? hiAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1340,6 +1404,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( hiAlarm6 ) ? hiAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1360,6 +1425,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( hiAlarm7 ) ? hiAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1380,6 +1446,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( hiAlarm8 ) ? hiAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1400,6 +1467,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( hiAlarm9 ) ? hiAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1420,6 +1488,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( hiAlarm10 ) ? hiAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1440,6 +1509,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( hiAlarm11 ) ? hiAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1462,6 +1532,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( hiAlarm12 ) ? hiAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1482,6 +1553,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( hiAlarm13 ) ? hiAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1502,6 +1574,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( hiAlarm14 ) ? hiAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1522,6 +1595,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( hiAlarm15 ) ? hiAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1542,6 +1616,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( hiAlarm16 ) ? hiAlarmColor : selectedColor
         enabled : true
         textColor : "black"
@@ -1562,6 +1637,7 @@ Screen {
         width: fieldLimWidth
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
+        buttonDisabledColor : disabledColor
         buttonSelectedColor : ( hiAlarm17 ) ? hiAlarmColor : selectedColor
         enabled : true
         textColor : "black"
