@@ -97,7 +97,7 @@ Screen {
 
     function refreshScreen() {
 
-        app.readDomoticzdevicesData()
+        app.readDomoticzDataTrigger()
 
         device0Label.text = app.deviceName[0];
         device1Label.text = app.deviceName[1];
@@ -281,252 +281,252 @@ Screen {
     function saveLolim0(text) {
         if (text) {
             app.deviceLolim[0] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveLolim1(text) {
         if (text) {
             app.deviceLolim[1] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveLolim2(text) {
         if (text) {
             app.deviceLolim[2] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveLolim3(text) {
         if (text) {
             app.deviceLolim[3] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveLolim4(text) {
         if (text) {
             app.deviceLolim[4] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveLolim5(text) {
         if (text) {
             app.deviceLolim[5] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveLolim6(text) {
         if (text) {
             app.deviceLolim[6] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveLolim7(text) {
         if (text) {
             app.deviceLolim[7] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveLolim8(text) {
         if (text) {
             app.deviceLolim[8] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveLolim9(text) {
         if (text) {
             app.deviceLolim[9] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveLolim10(text) {
         if (text) {
             app.deviceLolim[10] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveLolim11(text) {
         if (text) {
             app.deviceLolim[11] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveLolim12(text) {
         if (text) {
             app.deviceLolim[12] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveLolim13(text) {
         if (text) {
             app.deviceLolim[13] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveLolim14(text) {
         if (text) {
             app.deviceLolim[14] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveLolim15(text) {
         if (text) {
             app.deviceLolim[15] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveLolim16(text) {
         if (text) {
             app.deviceLolim[16] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveLolim17(text) {
         if (text) {
             app.deviceLolim[17] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveHilim0(text) {
         if (text) {
             app.deviceHilim[0] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveHilim1(text) {
         if (text) {
             app.deviceHilim[1] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveHilim2(text) {
         if (text) {
             app.deviceHilim[2] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveHilim3(text) {
         if (text) {
             app.deviceHilim[3] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveHilim4(text) {
         if (text) {
             app.deviceHilim[4] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveHilim5(text) {
         if (text) {
             app.deviceHilim[5] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveHilim6(text) {
         if (text) {
             app.deviceHilim[6] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveHilim7(text) {
         if (text) {
             app.deviceHilim[7] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveHilim8(text) {
         if (text) {
             app.deviceHilim[8] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveHilim9(text) {
         if (text) {
             app.deviceHilim[9] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveHilim10(text) {
         if (text) {
             app.deviceHilim[10] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveHilim11(text) {
         if (text) {
             app.deviceHilim[11] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveHilim12(text) {
         if (text) {
             app.deviceHilim[12] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveHilim13(text) {
         if (text) {
             app.deviceHilim[13] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveHilim14(text) {
         if (text) {
             app.deviceHilim[14] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveHilim15(text) {
         if (text) {
             app.deviceHilim[15] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveHilim16(text) {
         if (text) {
             app.deviceHilim[16] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 
     function saveHilim17(text) {
         if (text) {
             app.deviceHilim[17] = text.trim();
-            refreshScreen()
+//            refreshScreen()
         }
     }
 

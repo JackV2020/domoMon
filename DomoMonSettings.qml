@@ -61,7 +61,7 @@ Screen {
 
     function refreshScreen() {
 
-        app.readDomoticzdevicesData()
+        app.readDomoticzDataTrigger()
 
         domoticzIP.buttonText = app.ipAddress
         domoticzPort.buttonText = app.httpPort

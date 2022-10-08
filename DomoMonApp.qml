@@ -13,9 +13,13 @@ App {
 	property url settingsURL : "DomoMonSettings.qml"
 	property DomoMonSettings domomonSettings
 
+    property bool started : false
     property bool activeMe : false
+    property bool activeReading : false
 
-// ---------- tile croll count
+    property int currentIdx
+
+// ---------- tile scroll count
 
     property int scrollCounter : 0
 
@@ -134,11 +138,14 @@ App {
 			freezeScroll = (userSettingsJSON['freezeScroll'] == "yes") ? true : false
             deviceName  = userSettingsJSON['deviceName'].slice()
             deviceIdx   = userSettingsJSON['deviceIdx'].slice()
-            deviceValue = userSettingsJSON['deviceValue'].slice()
             deviceLolim = userSettingsJSON['deviceLolim'].slice()
             deviceHilim = userSettingsJSON['deviceHilim'].slice()
 
-            readDomoticzdevicesData()
+            var ii = 0
+
+            for (ii = 0; ii < 18 ; ii++) {
+                deviceValue.push("connecting....")
+            }
 
 		} catch(e) {
 
@@ -183,7 +190,6 @@ App {
 
             "deviceName"  : deviceName,
             "deviceIdx"   : deviceIdx,
-            "deviceValue" : deviceValue,
             "deviceLolim" : deviceLolim,
             "deviceHilim" : deviceHilim
 
@@ -212,139 +218,116 @@ App {
 
 // ---------- Get Domoticz data
 
-    function readDomoticzdevicesData()  {
+    function readDomoticzdeviceData()  {
 
-//        log("Reading Data")
+//        log("Reading Data for device "+currentIdx)
         
         var connectionPath = ipAddress + ":" + httpPort;
 
         if ( connectionPath.length > 4 ) {
 
-            var ii = 0
+            deviceLoAlarm[currentIdx] = false;
+            deviceHiAlarm[currentIdx] = false;
 
-            var newalarmlow = false
-            var newalarmhigh = false
-
-            for (ii = 0; ii < 18 ; ii++) {
-
-              deviceValue[ii] = "";
-              deviceLoAlarm[ii] = false;
-              deviceHiAlarm[ii] =  false;
-
-              if (deviceIdx[ii] != "" ) {
+            if (deviceIdx[currentIdx] != "" ) {
 
                 var xmlhttp = new XMLHttpRequest();
 
-//                log("http://"+connectionPath+"/json.htm?type=devices&rid="+deviceIdx[ii]+"&username=" + Qt.btoa(user) + "&password=" + Qt.btoa(pwd));
-                xmlhttp.open("GET", "http://"+connectionPath+"/json.htm?type=devices&rid="+deviceIdx[ii]+"&username=" + Qt.btoa(user) + "&password=" + Qt.btoa(pwd), false); // leave this false because we make a lot of requests.
-
-                xmlhttp.timeout = 200; // time in milliseconds
-
-                xmlhttp.ontimeout = function () {
-//        XMLHttpRequest timed out. Do something here.
-// this does not seem to be supported so I use xmlhttp.status below to detect all errors
-                    log("timeout for "+ii);
-                    value1 = value2 = value3 = value4 = value5 = value6 = "0";
-                }
+//                log("http://"+connectionPath+"/json.htm?type=devices&rid="+deviceIdx[currentIdx]+"&username=" + Qt.btoa(user) + "&password=" + Qt.btoa(pwd));
+                xmlhttp.open("GET", "http://"+connectionPath+"/json.htm?type=devices&rid="+deviceIdx[currentIdx]+"&username=" + Qt.btoa(user) + "&password=" + Qt.btoa(pwd), true);
 
                 xmlhttp.onreadystatechange = function() {
 
                     if (xmlhttp.readyState == XMLHttpRequest.DONE) {
 
                         if (xmlhttp.status === 200) {
-
+                            
                             dataJSON = JSON.parse(xmlhttp.responseText);
 
                             var SubType = "";
-                            deviceValue[ii] = "";
 
                             try {
                                 SubType = dataJSON['result'][0]['SubType'];
                             } catch(e) {
-                                SubType = "unknown";
-                                deviceValue[ii] = "idx Error"
-                                log("Ongeldige idx : "+deviceIdx[ii]);
-                                newalarmlow = true;
-                                newalarmhigh = true;
+                                log("Ongeldige idx : "+deviceIdx[currentIdx]);
+                                deviceValue[currentIdx] = "idx Error"
                             }
 
-                            if (deviceValue[ii] == "") {
+                            if (deviceValue[currentIdx] != "idx Error") {
 
-                                if (deviceName[ii] == '' || deviceName[ii] == '..wait......') { deviceName[ii] = dataJSON['result'][0]['Name'] }
-
-                                var value_ok = false;
+                                if (deviceName[currentIdx] == '' || deviceName[currentIdx] == '..wait......') { deviceName[currentIdx] = dataJSON['result'][0]['Name'] }
 
 // Try to get data from 'Data' or from 'Level', maybe other fields need to be added in future
 
-                                try {
-                                    if (SubType == "Selector Switch") {
-                                        deviceValue[ii] = dataJSON['result'][0]['Level']+" %";
-                                        value_ok = true;
-                                    } else {
-                                        deviceValue[ii] = dataJSON['result'][0]['Data']
-                                        value_ok = true;
-                                    }
-                                } catch(e) {
-                                    value_ok = false;
-                                }
-// Alarming
-                                if ( ! value_ok ) {
-                                    deviceValue[ii] = "Subtype Error";
-                                    newalarmlow = true;
-                                    newalarmhigh = true;
+                                if (SubType == "Selector Switch") {
+                                    deviceValue[currentIdx] = dataJSON['result'][0]['Level']+" %";
                                 } else {
+                                    deviceValue[currentIdx] = dataJSON['result'][0]['Data']
+                                }
+
+//                                log ("deviceValue : "+deviceValue[currentIdx])
+// Alarming
 // If text value, maybe more text SubTypes to follow in the future.....
-                                    if (
-                                        (SubType == "Alert")                ||
-                                        (SubType == "Switch")               ||
-                                        (SubType == "Text")
-                                    ) {
-                                        if (deviceLolim[ii] != '') { deviceLoAlarm[ii] =            deviceValue[ii].search(deviceLolim[ii] ) >= 0 }
-                                        if (deviceHilim[ii] != '') { deviceHiAlarm[ii] =            deviceValue[ii].search(deviceHilim[ii] ) >= 0 }
+                                if (
+                                    (SubType == "Alert")                ||
+                                    (SubType == "Switch")               ||
+                                    (SubType == "Text")
+                                ) {
+                                    if (deviceLolim[currentIdx] != '') { deviceLoAlarm[currentIdx] = deviceValue[currentIdx].search(deviceLolim[currentIdx] ) >= 0 }
+                                    if (deviceHilim[currentIdx] != '') { deviceHiAlarm[currentIdx] = deviceValue[currentIdx].search(deviceHilim[currentIdx] ) >= 0 }
 // else numeric value
-                                    } else {
-                                        if (deviceLolim[ii] != '') { deviceLoAlarm[ii] =          ( parseFloat(deviceValue[ii]) <= parseFloat(deviceLolim[ii]) ) }
-                                        if (deviceHilim[ii] != '') { deviceHiAlarm[ii] =          ( parseFloat(deviceValue[ii]) >= parseFloat(deviceHilim[ii]) ) }
-                                    }
-                                    if (deviceLolim[ii] != '') { newalarmlow  = newalarmlow  || deviceLoAlarm[ii] }
-                                    if (deviceHilim[ii] != '') { newalarmhigh = newalarmhigh || deviceHiAlarm[ii] }
+                                } else {
+                                    if (deviceLolim[currentIdx] != '') { deviceLoAlarm[currentIdx] = ( parseFloat(deviceValue[currentIdx]) <= parseFloat(deviceLolim[currentIdx]) ) }
+                                    if (deviceHilim[currentIdx] != '') { deviceHiAlarm[currentIdx] = ( parseFloat(deviceValue[currentIdx]) >= parseFloat(deviceHilim[currentIdx]) ) }
                                 }
                             }
                         } else {
-                            log("timeout or communication error for "+ii+"  "+deviceIdx[ii]+"  "+deviceName[ii]);
-                            newalarmlow = true;
-                            newalarmhigh = true;
+                            log("timeout or communication error");
+                            alarmlow = true;
+                            alarmhigh = true;
                         }
                     }
                 }
 
                 xmlhttp.send();
 
-              }
             }
-
-            alarmlow = newalarmlow
-            alarmhigh = newalarmhigh
-
+            
         } else {
-
-            newalarmlow = true;
-            newalarmhigh = true;
+            alarmlow = true;
+            alarmhigh = true;
         }
     }
 
+    function readDomoticzDataTrigger() {
+        alarmlow = false;
+        alarmhigh = false ; 
+        if (started) {currentIdx = -1} else  {currentIdx = -20}; // -20 causes some extra wait after boot
+        activeReading = true 
+    }
+    
 // ---------- Timer and refresh routine
+
+// Timer in ms 0.25 seconds
+
+	Timer {
+		id: readDomoticzDataTimer
+		interval: 250
+		running: activeReading
+		repeat: true
+		onTriggered: { currentIdx = currentIdx + 1 ; if(currentIdx >=0) { readDomoticzdeviceData() } ;  activeReading = currentIdx < 17}
+	}
 
 // Timer in ms 60 seconds
 
 	Timer {
-		id: readDomoticzDataTimer
+		id: readDomoticzDataTriggerTimer
 		interval: 60000
 		running: activeMe
 		repeat: true
-		onTriggered: readDomoticzdevicesData()
+        triggeredOnStart : true
+		onTriggered: readDomoticzDataTrigger()
 	}
-
 
 // Timer in ms domoInterval seconds
 

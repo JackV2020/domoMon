@@ -1,3 +1,5 @@
+2.0.3
+- Change IO to asynchronous
 2.0.2
 - Clear and disable fields for limits and names when idx is empty/emptied
 2.0.1
