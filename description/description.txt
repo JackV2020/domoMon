@@ -1,1 +1,1 @@
-Monitor Domoticz devices with 1 text/numeric value. Tile changes color when alarms are detected.
+Domoticz Monitor : monitor up to 18 devices with 1 text/numeric value. Tile changes color when alarms are detected.

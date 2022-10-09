@@ -60,8 +60,10 @@ App {
 
 // Tile alarm control
 
-    property bool alarmlow	: false
-    property bool alarmhigh : false
+    property bool alarmlow	    : false
+    property bool alarmhigh     : false
+    property bool newalarmlow	: false
+    property bool newalarmhigh  : false
 // blue
     property string lowTileColor : "#00f4ff"
 // red
@@ -218,18 +220,24 @@ App {
 
 // ---------- Get Domoticz data
 
-    function readDomoticzdeviceData()  {
+    function readDomoticzdeviceData(currentIdx)  {
 
-//        log("Reading Data for device "+currentIdx)
         
         var connectionPath = ipAddress + ":" + httpPort;
 
         if ( connectionPath.length > 4 ) {
 
-            deviceLoAlarm[currentIdx] = false;
-            deviceHiAlarm[currentIdx] = false;
 
-            if (deviceIdx[currentIdx] != "" ) {
+            if (deviceIdx[currentIdx] == "" ) {
+
+//                log("Skip Reading Data for device "+currentIdx)
+
+                deviceLoAlarm[currentIdx] = false;
+                deviceHiAlarm[currentIdx] = false;
+
+            } else {
+            
+//                log("Reading Data for device "+currentIdx)
 
                 var xmlhttp = new XMLHttpRequest();
 
@@ -265,7 +273,6 @@ App {
                                     deviceValue[currentIdx] = dataJSON['result'][0]['Data']
                                 }
 
-//                                log ("deviceValue : "+deviceValue[currentIdx])
 // Alarming
 // If text value, maybe more text SubTypes to follow in the future.....
                                 if (
@@ -273,13 +280,17 @@ App {
                                     (SubType == "Switch")               ||
                                     (SubType == "Text")
                                 ) {
-                                    if (deviceLolim[currentIdx] != '') { deviceLoAlarm[currentIdx] = deviceValue[currentIdx].search(deviceLolim[currentIdx] ) >= 0 }
-                                    if (deviceHilim[currentIdx] != '') { deviceHiAlarm[currentIdx] = deviceValue[currentIdx].search(deviceHilim[currentIdx] ) >= 0 }
+                                    if (deviceLolim[currentIdx] == "" ) { deviceLoAlarm[currentIdx] = false } else { deviceLoAlarm[currentIdx] = deviceValue[currentIdx].search(deviceLolim[currentIdx] ) >= 0 }
+                                    if (deviceHilim[currentIdx] == "" ) { deviceHiAlarm[currentIdx] = false } else { deviceHiAlarm[currentIdx] = deviceValue[currentIdx].search(deviceHilim[currentIdx] ) >= 0}
 // else numeric value
                                 } else {
-                                    if (deviceLolim[currentIdx] != '') { deviceLoAlarm[currentIdx] = ( parseFloat(deviceValue[currentIdx]) <= parseFloat(deviceLolim[currentIdx]) ) }
-                                    if (deviceHilim[currentIdx] != '') { deviceHiAlarm[currentIdx] = ( parseFloat(deviceValue[currentIdx]) >= parseFloat(deviceHilim[currentIdx]) ) }
+                                    deviceLoAlarm[currentIdx] = parseFloat(deviceValue[currentIdx]) <= parseFloat(deviceLolim[currentIdx]) ;
+                                    deviceHiAlarm[currentIdx] = parseFloat(deviceValue[currentIdx]) >= parseFloat(deviceHilim[currentIdx]) ;
                                 }
+                                newalarmlow  = newalarmlow   || deviceLoAlarm[currentIdx];
+                                newalarmhigh = newalarmhigh  || deviceHiAlarm[currentIdx];
+                                alarmlow  = alarmlow  || deviceLoAlarm[currentIdx];
+                                alarmhigh = alarmhigh || deviceHiAlarm[currentIdx]; 
                             }
                         } else {
                             log("timeout or communication error");
@@ -300,8 +311,8 @@ App {
     }
 
     function readDomoticzDataTrigger() {
-        alarmlow = false;
-        alarmhigh = false ; 
+        newalarmlow = false;
+        newalarmhigh = false;
         if (started) {currentIdx = -1} else  {currentIdx = -20}; // -20 causes some extra wait after boot
         activeReading = true 
     }
@@ -315,7 +326,15 @@ App {
 		interval: 250
 		running: activeReading
 		repeat: true
-		onTriggered: { currentIdx = currentIdx + 1 ; if(currentIdx >=0) { readDomoticzdeviceData() } ;  activeReading = currentIdx < 17}
+		onTriggered: { currentIdx = currentIdx + 1 ;
+                        if( (currentIdx >=0) && (currentIdx <=17) ) { 
+                            readDomoticzdeviceData(currentIdx) 
+                            } ;
+                        if(currentIdx == 20 ) {
+                            alarmlow = newalarmlow;
+                            alarmhigh = newalarmhigh;
+                            activeReading = false}
+                        }
 	}
 
 // Timer in ms 60 seconds

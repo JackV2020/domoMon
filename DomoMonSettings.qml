@@ -61,8 +61,6 @@ Screen {
 
     function refreshScreen() {
 
-        app.readDomoticzDataTrigger()
-
         domoticzIP.buttonText = app.ipAddress
         domoticzPort.buttonText = app.httpPort
 
@@ -195,6 +193,7 @@ Screen {
                 app.deviceIdx[0] = text.trim();
                 if (text.trim() == "" ) { saveDevice1(" ") ; app.deviceLolim[0] = "" ; app.deviceHilim[0] = "" }
                 else { saveDevice1("..wait......") }
+                app.readDomoticzdeviceData(0)
             }
 		}
 	}
@@ -206,6 +205,7 @@ Screen {
                 app.deviceIdx[1] = text.trim();
                 if (text.trim() == "" ) { saveDevice2(" "); app.deviceLolim[1] = "" ; app.deviceHilim[1] = "" }
                 else { saveDevice2("..wait......") }
+                app.readDomoticzdeviceData(1)
             }
 		}
 	}
@@ -216,6 +216,7 @@ Screen {
                 app.deviceIdx[2] = text.trim();
                 if (text.trim() == "" ) { saveDevice3(" "); app.deviceLolim[2] = "" ; app.deviceHilim[2] = "" }
                 else { saveDevice3("..wait......") }
+                app.readDomoticzdeviceData(2)
             }
 		}
 	}
@@ -226,6 +227,7 @@ Screen {
                 app.deviceIdx[3] = text.trim();
                 if (text.trim() == "" ) { saveDevice4(" "); app.deviceLolim[3] = "" ; app.deviceHilim[3] = "" }
                 else { saveDevice4("..wait......") }
+                app.readDomoticzdeviceData(3)
             }
 		}
 	}
@@ -236,6 +238,7 @@ Screen {
                 app.deviceIdx[4] = text.trim();
                 if (text.trim() == "" ) { saveDevice5(" "); app.deviceLolim[4] = "" ; app.deviceHilim[4] = "" }
                 else { saveDevice5("..wait......") }
+                app.readDomoticzdeviceData(4)
             }
 		}
 	}
@@ -246,6 +249,7 @@ Screen {
                 app.deviceIdx[5] = text.trim();
                 if (text.trim() == "" ) { saveDevice6(" "); app.deviceLolim[5] = "" ; app.deviceHilim[5] = "" }
                 else { saveDevice6("..wait......") }
+                app.readDomoticzdeviceData(5)
             }
 		}
 	}
@@ -256,6 +260,7 @@ Screen {
                 app.deviceIdx[6] = text.trim();
                 if (text.trim() == "" ) { saveDevice7(" "); app.deviceLolim[6] = "" ; app.deviceHilim[6] = "" }
                 else { saveDevice7("..wait......") }
+                app.readDomoticzdeviceData(6)
             }
 		}
 	}
@@ -266,6 +271,7 @@ Screen {
                 app.deviceIdx[7] = text.trim();
                 if (text.trim() == "" ) { saveDevice8(" "); app.deviceLolim[7] = "" ; app.deviceHilim[7] = "" }
                 else { saveDevice8("..wait......") }
+                app.readDomoticzdeviceData(7)
             }
 		}
 	}
@@ -276,6 +282,7 @@ Screen {
                 app.deviceIdx[8] = text.trim();
                 if (text.trim() == "" ) { saveDevice9(" "); app.deviceLolim[8] = "" ; app.deviceHilim[8] = "" }
                 else { saveDevice9("..wait......") }
+                app.readDomoticzdeviceData(8)
             }
 		}
 	}
@@ -286,6 +293,7 @@ Screen {
                 app.deviceIdx[9] = text.trim();
                 if (text.trim() == "" ) { saveDevice10(" "); app.deviceLolim[9] = "" ; app.deviceHilim[9] = "" }
                 else { saveDevice10("..wait......") }
+                app.readDomoticzdeviceData(9)
             }
 		}
 	}
@@ -296,6 +304,7 @@ Screen {
                 app.deviceIdx[10] = text.trim();
                 if (text.trim() == "" ) { saveDevice11(" "); app.deviceLolim[10] = "" ; app.deviceHilim[10] = "" }
                 else { saveDevice11("..wait......") }
+                app.readDomoticzdeviceData(10)
             }
 		}
 	}
@@ -306,6 +315,7 @@ Screen {
                 app.deviceIdx[11] = text.trim();
                 if (text.trim() == "" ) { saveDevice12(" "); app.deviceLolim[11] = "" ; app.deviceHilim[11] = "" }
                 else { saveDevice12("..wait......") }
+                app.readDomoticzdeviceData(11)
             }
 		}
 	}
@@ -316,6 +326,7 @@ Screen {
                 app.deviceIdx[12] = text.trim();
                 if (text.trim() == "" ) { saveDevice13(" "); app.deviceLolim[12] = "" ; app.deviceHilim[12] = "" }
                 else { saveDevice13("..wait......") }
+                app.readDomoticzdeviceData(12)
             }
 		}
 	}
@@ -326,6 +337,7 @@ Screen {
                 app.deviceIdx[13] = text.trim();
                 if (text.trim() == "" ) { saveDevice14(" "); app.deviceLolim[13] = "" ; app.deviceHilim[13] = "" }
                 else { saveDevice14("..wait......") }
+                app.readDomoticzdeviceData(13)
             }
 		}
 	}
@@ -336,6 +348,7 @@ Screen {
                 app.deviceIdx[14] = text.trim();
                 if (text.trim() == "" ) { saveDevice15(" "); app.deviceLolim[14] = "" ; app.deviceHilim[14] = "" }
                 else { saveDevice15("..wait......") }
+                app.readDomoticzdeviceData(14)
             }
 		}
 	}
@@ -346,6 +359,7 @@ Screen {
                 app.deviceIdx[15] = text.trim();
                 if (text.trim() == "" ) { saveDevice16(" "); app.deviceLolim[15] = "" ; app.deviceHilim[15] = "" }
                 else { saveDevice16("..wait......") }
+                app.readDomoticzdeviceData(15)
             }
 		}
 	}
@@ -356,6 +370,7 @@ Screen {
                 app.deviceIdx[16] = text.trim();
                 if (text.trim() == "" ) { saveDevice17(" "); app.deviceLolim[16] = "" ; app.deviceHilim[16] = "" }
                 else { saveDevice17("..wait......") }
+                app.readDomoticzdeviceData(16)
             }
 		}
 	}
@@ -366,6 +381,7 @@ Screen {
                 app.deviceIdx[17] = text.trim();
                 if (text.trim() == "" ) { saveDevice18(" "); app.deviceLolim[17] = "" ; app.deviceHilim[17] = "" }
                 else { saveDevice18("..wait......") }
+                app.readDomoticzdeviceData(17)
             }
 		}
 	}
