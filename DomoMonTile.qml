@@ -6,6 +6,8 @@ Tile {
 
     onVisibleChanged: {
         if (visible) {
+            app.alarmlow  = app.deviceLoAlarm.indexOf(true) >= 0;
+            app.alarmhigh = app.deviceHiAlarm.indexOf(true) >= 0;
             app.activeMe = true
         } else { 
             app.activeMe = false
