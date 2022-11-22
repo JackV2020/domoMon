@@ -227,17 +227,20 @@ App {
 
         if ( connectionPath.length > 4 ) {
 
-
             if (deviceIdx[currentIdx] == "" ) {
 
 //                log("Skip Reading Data for device "+currentIdx)
-
+                deviceValue[currentIdx] = "";
                 deviceLoAlarm[currentIdx] = false;
                 deviceHiAlarm[currentIdx] = false;
 
             } else {
             
 //                log("Reading Data for device "+currentIdx)
+
+                if (deviceValue[currentIdx] == "idx Error") {
+                    deviceValue[currentIdx] = "connecting....";
+                }
 
                 var xmlhttp = new XMLHttpRequest();
 

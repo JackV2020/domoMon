@@ -1,3 +1,5 @@
+2.0.4
+- Improved plugin restart synchronization, just wait after plugin restart.
 2.0.3
 - Change IO to asynchronous
 2.0.2
