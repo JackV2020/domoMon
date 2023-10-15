@@ -236,16 +236,21 @@ App {
 
             } else {
             
-//                log("Reading Data for device "+currentIdx)
+//                log("Reading Data for device "+currentIdx +"  "+Qt.btoa(user+":"+pwd)+"  "+"http://"+connectionPath+"/json.htm?type=command&param=getdevices&rid="+deviceIdx[currentIdx])
 
                 if (deviceValue[currentIdx] == "idx Error") {
                     deviceValue[currentIdx] = "connecting....";
                 }
 
                 var xmlhttp = new XMLHttpRequest();
+                xmlhttp.withCredentials = true;
 
 //                log("http://"+connectionPath+"/json.htm?type=devices&rid="+deviceIdx[currentIdx]+"&username=" + Qt.btoa(user) + "&password=" + Qt.btoa(pwd));
-                xmlhttp.open("GET", "http://"+connectionPath+"/json.htm?type=devices&rid="+deviceIdx[currentIdx]+"&username=" + Qt.btoa(user) + "&password=" + Qt.btoa(pwd), true);
+//                xmlhttp.open("GET", "http://"+connectionPath+"/json.htm?type=devices&rid="+deviceIdx[currentIdx]+"&username=" + Qt.btoa(user) + "&password=" + Qt.btoa(pwd), true);
+
+//                log("http://"+connectionPath+"/json.htm?type=command&param=getdevices&rid="+deviceIdx[currentIdx]);
+                xmlhttp.open("GET", "http://"+connectionPath+"/json.htm?type=command&param=getdevices&rid="+deviceIdx[currentIdx], true);
+                xmlhttp.setRequestHeader("Authorization", "Basic " +Qt.btoa(user+":"+pwd));
 
                 xmlhttp.onreadystatechange = function() {
 

@@ -5,40 +5,40 @@ import BasicUIControls 1.0
 Screen {
 	id: root
 	screenTitle: qsTr("Domoticz Settings")
-    
-    property int fieldHeightHeader : isNxt ? 35 : 28
-    property int fieldWidhtHeader : isNxt ? 250 : 200
 
-    property int setWidth  : isNxt ? 290 : 232
-    property int setHeight : isNxt ? 325 : 260
+	property int fieldHeightHeader : isNxt ? 35 : 28
+	property int fieldWidhtHeader : isNxt ? 250 : 200
 
-    property string setColor  : "lightblue"
+	property int setWidth  : isNxt ? 290 : 232
+	property int setHeight : isNxt ? 325 : 260
 
-    property int fieldHeight : isNxt ? 30 : 24
-    property int fieldNameWidth : isNxt ? 160 : 128
-    property int fieldIdxWidth : isNxt ? 70 : 52
-    property int insetTopMargin : isNxt ? 15 : 12
-    property int insetSideMargin : isNxt ? 20 : 16
+	property string setColor  : "lightblue"
+
+	property int fieldHeight : isNxt ? 30 : 24
+	property int fieldNameWidth : isNxt ? 160 : 128
+	property int fieldIdxWidth : isNxt ? 70 : 52
+	property int insetTopMargin : isNxt ? 15 : 12
+	property int insetSideMargin : isNxt ? 20 : 16
 
 	property string	activeColor: "lightgrey"
 	property string	hoverColor: "lightblue"
 	property string	selectedColor : "yellow"
 	property string	disabledColor : "grey"
 
-    property string     trueColor: "lightgreen"
-    property string     falseColor: "#EF3C40"
+	property string     trueColor: "lightgreen"
+	property string     falseColor: "#EF3C40"
 
-    property bool   activeMe
+	property bool   activeMe
 
-    onVisibleChanged: {
-        if (visible) {
-            addCustomTopRightButton("Save");
-            refreshScreen()
-            activeMe = true
-        } else { 
-            activeMe = false
-        }
-    }
+	onVisibleChanged: {
+		if (visible) {
+			addCustomTopRightButton("Save");
+			refreshScreen()
+			activeMe = true
+		} else {
+			activeMe = false
+		}
+	}
 
 // Save button
 
@@ -57,25 +57,25 @@ Screen {
 		running: activeMe
 		repeat: true
 		onTriggered: refreshScreen()
-	}  
+	}
 
-    function refreshScreen() {
+	function refreshScreen() {
 
-        domoticzIP.buttonText = app.ipAddress
-        domoticzPort.buttonText = app.httpPort
+		domoticzIP.buttonText = app.ipAddress
+		domoticzPort.buttonText = app.httpPort
 
-        domoticzInterval.buttonText = app.domoInterval;
-        
-        domoticzUser.buttonText = app.user;
-        domoticzPassword.buttonText = "********";
+		domoticzInterval.buttonText = app.domoInterval;
 
-        if (app.freezeScroll) {
-            domoMonFreezeScroll.buttonText = "Scroll disabled"
-            domoMonFreezeScroll.buttonActiveColor = falseColor
-        } else {
-            domoMonFreezeScroll.buttonText = "Scroll enabled"
-            domoMonFreezeScroll.buttonActiveColor = trueColor
-        }
+		domoticzUser.buttonText = app.user;
+		domoticzPassword.buttonText = "********";
+
+		if (app.freezeScroll) {
+			domoMonFreezeScroll.buttonText = "Scroll disabled"
+			domoMonFreezeScroll.buttonActiveColor = falseColor
+		} else {
+			domoMonFreezeScroll.buttonText = "Scroll enabled"
+			domoMonFreezeScroll.buttonActiveColor = trueColor
+		}
 
 		idx1Label.buttonText = app.deviceIdx[0];
 		idx2Label.buttonText = app.deviceIdx[1];
@@ -140,23 +140,23 @@ Screen {
 		device17Label.buttonText = app.deviceName[16];
 		device18Label.buttonText = app.deviceName[17];
 
-    }
+	}
 
 // ----------------------------------------------------- Save IP Address
 
 	function saveipAddress(text) {
-        if (text) {
-            if ( ( text.trim() == "" ) || (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(text.trim()) ) ) {  
-                app.ipAddress = text.trim();
-            }
-        }
+		if (text) {
+			if ( ( text.trim() == "" ) || (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(text.trim()) ) ) {
+				app.ipAddress = text.trim();
+			}
+		}
 	}
 
 	function saveipPort(text) {
 		if (text) {
-            if ( parseInt(text) > 0 ) {
-                app.httpPort = parseInt(text);
-            }
+			if ( parseInt(text) > 0 ) {
+				app.httpPort = parseInt(text);
+			}
 		}
 	}
 
@@ -174,13 +174,13 @@ Screen {
 
 	function saveInterval(text) {
 		if (text) {
-            if ( parseInt(text) > 4 ) {
-                domoticzInterval.buttonText = parseInt(text);
-                app.domoInterval = parseInt(text);
-            } else {
-                domoticzInterval.buttonText = "5"
-                app.domoInterval = 5
-            }
+			if ( parseInt(text) > 4 ) {
+				domoticzInterval.buttonText = parseInt(text);
+				app.domoInterval = parseInt(text);
+			} else {
+				domoticzInterval.buttonText = "5"
+				app.domoInterval = 5
+			}
 		}
 	}
 
@@ -188,201 +188,201 @@ Screen {
 
 	function saveIdx1(text) {
 		if (text) {
-            if (text.trim() != idx1Label.buttonText ) {
-                idx1Label.buttonText = text.trim();
-                app.deviceIdx[0] = text.trim();
-                if (text.trim() == "" ) { saveDevice1(" ") ; app.deviceLolim[0] = "" ; app.deviceHilim[0] = "" }
-                else { saveDevice1("..wait......") }
-                app.readDomoticzdeviceData(0)
-            }
+			if (text.trim() != idx1Label.buttonText ) {
+				idx1Label.buttonText = text.trim();
+				app.deviceIdx[0] = text.trim();
+				if (text.trim() == "" ) { saveDevice1(" ") ; app.deviceLolim[0] = "" ; app.deviceHilim[0] = "" }
+				else { saveDevice1("..wait......") }
+				app.readDomoticzdeviceData(0)
+			}
 		}
 	}
 
 	function saveIdx2(text) {
 		if (text) {
-            if (text.trim() != idx2Label.buttonText ) {
-                idx2Label.buttonText = text.trim();
-                app.deviceIdx[1] = text.trim();
-                if (text.trim() == "" ) { saveDevice2(" "); app.deviceLolim[1] = "" ; app.deviceHilim[1] = "" }
-                else { saveDevice2("..wait......") }
-                app.readDomoticzdeviceData(1)
-            }
+			if (text.trim() != idx2Label.buttonText ) {
+				idx2Label.buttonText = text.trim();
+				app.deviceIdx[1] = text.trim();
+				if (text.trim() == "" ) { saveDevice2(" "); app.deviceLolim[1] = "" ; app.deviceHilim[1] = "" }
+				else { saveDevice2("..wait......") }
+				app.readDomoticzdeviceData(1)
+			}
 		}
 	}
 	function saveIdx3(text) {
 		if (text) {
-            if (text.trim() != idx3Label.buttonText ) {
-                idx3Label.buttonText = text.trim();
-                app.deviceIdx[2] = text.trim();
-                if (text.trim() == "" ) { saveDevice3(" "); app.deviceLolim[2] = "" ; app.deviceHilim[2] = "" }
-                else { saveDevice3("..wait......") }
-                app.readDomoticzdeviceData(2)
-            }
+			if (text.trim() != idx3Label.buttonText ) {
+				idx3Label.buttonText = text.trim();
+				app.deviceIdx[2] = text.trim();
+				if (text.trim() == "" ) { saveDevice3(" "); app.deviceLolim[2] = "" ; app.deviceHilim[2] = "" }
+				else { saveDevice3("..wait......") }
+				app.readDomoticzdeviceData(2)
+			}
 		}
 	}
 	function saveIdx4(text) {
 		if (text) {
-            if (text.trim() != idx4Label.buttonText ) {
-                idx4Label.buttonText = text.trim();
-                app.deviceIdx[3] = text.trim();
-                if (text.trim() == "" ) { saveDevice4(" "); app.deviceLolim[3] = "" ; app.deviceHilim[3] = "" }
-                else { saveDevice4("..wait......") }
-                app.readDomoticzdeviceData(3)
-            }
+			if (text.trim() != idx4Label.buttonText ) {
+				idx4Label.buttonText = text.trim();
+				app.deviceIdx[3] = text.trim();
+				if (text.trim() == "" ) { saveDevice4(" "); app.deviceLolim[3] = "" ; app.deviceHilim[3] = "" }
+				else { saveDevice4("..wait......") }
+				app.readDomoticzdeviceData(3)
+			}
 		}
 	}
 	function saveIdx5(text) {
 		if (text) {
-            if (text.trim() != idx5Label.buttonText ) {
-                idx5Label.buttonText = text.trim();
-                app.deviceIdx[4] = text.trim();
-                if (text.trim() == "" ) { saveDevice5(" "); app.deviceLolim[4] = "" ; app.deviceHilim[4] = "" }
-                else { saveDevice5("..wait......") }
-                app.readDomoticzdeviceData(4)
-            }
+			if (text.trim() != idx5Label.buttonText ) {
+				idx5Label.buttonText = text.trim();
+				app.deviceIdx[4] = text.trim();
+				if (text.trim() == "" ) { saveDevice5(" "); app.deviceLolim[4] = "" ; app.deviceHilim[4] = "" }
+				else { saveDevice5("..wait......") }
+				app.readDomoticzdeviceData(4)
+			}
 		}
 	}
 	function saveIdx6(text) {
 		if (text) {
-            if (text.trim() != idx6Label.buttonText ) {
-                idx6Label.buttonText = text.trim();
-                app.deviceIdx[5] = text.trim();
-                if (text.trim() == "" ) { saveDevice6(" "); app.deviceLolim[5] = "" ; app.deviceHilim[5] = "" }
-                else { saveDevice6("..wait......") }
-                app.readDomoticzdeviceData(5)
-            }
+			if (text.trim() != idx6Label.buttonText ) {
+				idx6Label.buttonText = text.trim();
+				app.deviceIdx[5] = text.trim();
+				if (text.trim() == "" ) { saveDevice6(" "); app.deviceLolim[5] = "" ; app.deviceHilim[5] = "" }
+				else { saveDevice6("..wait......") }
+				app.readDomoticzdeviceData(5)
+			}
 		}
 	}
 	function saveIdx7(text) {
 		if (text) {
-            if (text.trim() != idx7Label.buttonText ) {
-                idx7Label.buttonText = text.trim();
-                app.deviceIdx[6] = text.trim();
-                if (text.trim() == "" ) { saveDevice7(" "); app.deviceLolim[6] = "" ; app.deviceHilim[6] = "" }
-                else { saveDevice7("..wait......") }
-                app.readDomoticzdeviceData(6)
-            }
+			if (text.trim() != idx7Label.buttonText ) {
+				idx7Label.buttonText = text.trim();
+				app.deviceIdx[6] = text.trim();
+				if (text.trim() == "" ) { saveDevice7(" "); app.deviceLolim[6] = "" ; app.deviceHilim[6] = "" }
+				else { saveDevice7("..wait......") }
+				app.readDomoticzdeviceData(6)
+			}
 		}
 	}
 	function saveIdx8(text) {
 		if (text) {
-            if (text.trim() != idx8Label.buttonText ) {
-                idx8Label.buttonText = text.trim();
-                app.deviceIdx[7] = text.trim();
-                if (text.trim() == "" ) { saveDevice8(" "); app.deviceLolim[7] = "" ; app.deviceHilim[7] = "" }
-                else { saveDevice8("..wait......") }
-                app.readDomoticzdeviceData(7)
-            }
+			if (text.trim() != idx8Label.buttonText ) {
+				idx8Label.buttonText = text.trim();
+				app.deviceIdx[7] = text.trim();
+				if (text.trim() == "" ) { saveDevice8(" "); app.deviceLolim[7] = "" ; app.deviceHilim[7] = "" }
+				else { saveDevice8("..wait......") }
+				app.readDomoticzdeviceData(7)
+			}
 		}
 	}
 	function saveIdx9(text) {
 		if (text) {
-            if (text.trim() != idx9Label.buttonText ) {
-                idx9Label.buttonText = text.trim();
-                app.deviceIdx[8] = text.trim();
-                if (text.trim() == "" ) { saveDevice9(" "); app.deviceLolim[8] = "" ; app.deviceHilim[8] = "" }
-                else { saveDevice9("..wait......") }
-                app.readDomoticzdeviceData(8)
-            }
+			if (text.trim() != idx9Label.buttonText ) {
+				idx9Label.buttonText = text.trim();
+				app.deviceIdx[8] = text.trim();
+				if (text.trim() == "" ) { saveDevice9(" "); app.deviceLolim[8] = "" ; app.deviceHilim[8] = "" }
+				else { saveDevice9("..wait......") }
+				app.readDomoticzdeviceData(8)
+			}
 		}
 	}
 	function saveIdx10(text) {
 		if (text) {
-            if (text.trim() != idx10Label.buttonText ) {
-                idx10Label.buttonText = text.trim();
-                app.deviceIdx[9] = text.trim();
-                if (text.trim() == "" ) { saveDevice10(" "); app.deviceLolim[9] = "" ; app.deviceHilim[9] = "" }
-                else { saveDevice10("..wait......") }
-                app.readDomoticzdeviceData(9)
-            }
+			if (text.trim() != idx10Label.buttonText ) {
+				idx10Label.buttonText = text.trim();
+				app.deviceIdx[9] = text.trim();
+				if (text.trim() == "" ) { saveDevice10(" "); app.deviceLolim[9] = "" ; app.deviceHilim[9] = "" }
+				else { saveDevice10("..wait......") }
+				app.readDomoticzdeviceData(9)
+			}
 		}
 	}
 	function saveIdx11(text) {
 		if (text) {
-            if (text.trim() != idx11Label.buttonText ) {
-                idx11Label.buttonText = text.trim();
-                app.deviceIdx[10] = text.trim();
-                if (text.trim() == "" ) { saveDevice11(" "); app.deviceLolim[10] = "" ; app.deviceHilim[10] = "" }
-                else { saveDevice11("..wait......") }
-                app.readDomoticzdeviceData(10)
-            }
+			if (text.trim() != idx11Label.buttonText ) {
+				idx11Label.buttonText = text.trim();
+				app.deviceIdx[10] = text.trim();
+				if (text.trim() == "" ) { saveDevice11(" "); app.deviceLolim[10] = "" ; app.deviceHilim[10] = "" }
+				else { saveDevice11("..wait......") }
+				app.readDomoticzdeviceData(10)
+			}
 		}
 	}
 	function saveIdx12(text) {
 		if (text) {
-            if (text.trim() != idx12Label.buttonText ) {
-                idx12Label.buttonText = text.trim();
-                app.deviceIdx[11] = text.trim();
-                if (text.trim() == "" ) { saveDevice12(" "); app.deviceLolim[11] = "" ; app.deviceHilim[11] = "" }
-                else { saveDevice12("..wait......") }
-                app.readDomoticzdeviceData(11)
-            }
+			if (text.trim() != idx12Label.buttonText ) {
+				idx12Label.buttonText = text.trim();
+				app.deviceIdx[11] = text.trim();
+				if (text.trim() == "" ) { saveDevice12(" "); app.deviceLolim[11] = "" ; app.deviceHilim[11] = "" }
+				else { saveDevice12("..wait......") }
+				app.readDomoticzdeviceData(11)
+			}
 		}
 	}
 	function saveIdx13(text) {
 		if (text) {
-            if (text.trim() != idx13Label.buttonText ) {
-                idx13Label.buttonText = text.trim();
-                app.deviceIdx[12] = text.trim();
-                if (text.trim() == "" ) { saveDevice13(" "); app.deviceLolim[12] = "" ; app.deviceHilim[12] = "" }
-                else { saveDevice13("..wait......") }
-                app.readDomoticzdeviceData(12)
-            }
+			if (text.trim() != idx13Label.buttonText ) {
+				idx13Label.buttonText = text.trim();
+				app.deviceIdx[12] = text.trim();
+				if (text.trim() == "" ) { saveDevice13(" "); app.deviceLolim[12] = "" ; app.deviceHilim[12] = "" }
+				else { saveDevice13("..wait......") }
+				app.readDomoticzdeviceData(12)
+			}
 		}
 	}
 	function saveIdx14(text) {
 		if (text) {
-            if (text.trim() != idx14Label.buttonText ) {
-                idx14Label.buttonText = text.trim();
-                app.deviceIdx[13] = text.trim();
-                if (text.trim() == "" ) { saveDevice14(" "); app.deviceLolim[13] = "" ; app.deviceHilim[13] = "" }
-                else { saveDevice14("..wait......") }
-                app.readDomoticzdeviceData(13)
-            }
+			if (text.trim() != idx14Label.buttonText ) {
+				idx14Label.buttonText = text.trim();
+				app.deviceIdx[13] = text.trim();
+				if (text.trim() == "" ) { saveDevice14(" "); app.deviceLolim[13] = "" ; app.deviceHilim[13] = "" }
+				else { saveDevice14("..wait......") }
+				app.readDomoticzdeviceData(13)
+			}
 		}
 	}
 	function saveIdx15(text) {
 		if (text) {
-            if (text.trim() != idx15Label.buttonText ) {
-                idx15Label.buttonText = text.trim();
-                app.deviceIdx[14] = text.trim();
-                if (text.trim() == "" ) { saveDevice15(" "); app.deviceLolim[14] = "" ; app.deviceHilim[14] = "" }
-                else { saveDevice15("..wait......") }
-                app.readDomoticzdeviceData(14)
-            }
+			if (text.trim() != idx15Label.buttonText ) {
+				idx15Label.buttonText = text.trim();
+				app.deviceIdx[14] = text.trim();
+				if (text.trim() == "" ) { saveDevice15(" "); app.deviceLolim[14] = "" ; app.deviceHilim[14] = "" }
+				else { saveDevice15("..wait......") }
+				app.readDomoticzdeviceData(14)
+			}
 		}
 	}
 	function saveIdx16(text) {
 		if (text) {
-            if (text.trim() != idx16Label.buttonText ) {
-                idx16Label.buttonText = text.trim();
-                app.deviceIdx[15] = text.trim();
-                if (text.trim() == "" ) { saveDevice16(" "); app.deviceLolim[15] = "" ; app.deviceHilim[15] = "" }
-                else { saveDevice16("..wait......") }
-                app.readDomoticzdeviceData(15)
-            }
+			if (text.trim() != idx16Label.buttonText ) {
+				idx16Label.buttonText = text.trim();
+				app.deviceIdx[15] = text.trim();
+				if (text.trim() == "" ) { saveDevice16(" "); app.deviceLolim[15] = "" ; app.deviceHilim[15] = "" }
+				else { saveDevice16("..wait......") }
+				app.readDomoticzdeviceData(15)
+			}
 		}
 	}
 	function saveIdx17(text) {
 		if (text) {
-            if (text.trim() != idx17Label.buttonText ) {
-                idx17Label.buttonText = text.trim();
-                app.deviceIdx[16] = text.trim();
-                if (text.trim() == "" ) { saveDevice17(" "); app.deviceLolim[16] = "" ; app.deviceHilim[16] = "" }
-                else { saveDevice17("..wait......") }
-                app.readDomoticzdeviceData(16)
-            }
+			if (text.trim() != idx17Label.buttonText ) {
+				idx17Label.buttonText = text.trim();
+				app.deviceIdx[16] = text.trim();
+				if (text.trim() == "" ) { saveDevice17(" "); app.deviceLolim[16] = "" ; app.deviceHilim[16] = "" }
+				else { saveDevice17("..wait......") }
+				app.readDomoticzdeviceData(16)
+			}
 		}
 	}
 	function saveIdx18(text) {
 		if (text) {
-            if (text.trim() != idx18Label.buttonText ) {
-                idx18Label.buttonText = text.trim();
-                app.deviceIdx[17] = text.trim();
-                if (text.trim() == "" ) { saveDevice18(" "); app.deviceLolim[17] = "" ; app.deviceHilim[17] = "" }
-                else { saveDevice18("..wait......") }
-                app.readDomoticzdeviceData(17)
-            }
+			if (text.trim() != idx18Label.buttonText ) {
+				idx18Label.buttonText = text.trim();
+				app.deviceIdx[17] = text.trim();
+				if (text.trim() == "" ) { saveDevice18(" "); app.deviceLolim[17] = "" ; app.deviceHilim[17] = "" }
+				else { saveDevice18("..wait......") }
+				app.readDomoticzdeviceData(17)
+			}
 		}
 	}
 
@@ -516,307 +516,290 @@ Screen {
 
 // ------------------------------------------------------- IP address
 
-    Text {
-        id: ipAddressLabel
-        text: "IP Address"
-        anchors {
-            top: parent.top
-            horizontalCenter: set1.horizontalCenter
-        }
-        font {
-            pixelSize: isNxt ? 20 : 16
-            family: qfont.bold.name
-        }
-    }
+	Text {
+		id: ipAddressLabel
+		text: "IP Address"
+		anchors {
+			top: parent.top
+			horizontalCenter: set1.horizontalCenter
+		}
+		font {
+			pixelSize: isNxt ? 20 : 16
+			family: qfont.bold.name
+		}
+	}
 
-    YaLabel {
-        id: domoticzIP
-        buttonText:  ""
-        height: fieldHeightHeader
-        width: fieldWidhtHeader
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : false
-        textColor : "black"
-        buttonBorderWidth: 2
-        anchors {
-            top: ipAddressLabel.bottom
-            horizontalCenter: set1.horizontalCenter
-        }
-        onClicked: {
+	YaLabel {
+		id: domoticzIP
+		buttonText:  ""
+		height: fieldHeightHeader
+		width: fieldWidhtHeader
+		buttonActiveColor: activeColor
+		buttonHoverColor: hoverColor
+		buttonSelectedColor : selectedColor
+		enabled : true
+		selected : false
+		textColor : "black"
+		buttonBorderWidth: 2
+		anchors {
+			top: ipAddressLabel.bottom
+			horizontalCenter: set1.horizontalCenter
+		}
+		onClicked: {
 			qkeyboard.open("The IP address of the Domoticz server", domoticzIP.buttonText, saveipAddress)
-        }
-    }
+		}
+	}
 
 // ------------------------------------------------------- IP Port
 
-    Text {
-        id: portLabel
-        text: "Port"
-        anchors {
-            top: domoticzIP.bottom
-            topMargin: isNxt ? 10 : 8
-            horizontalCenter: set1.horizontalCenter
-        }
-        font {
-            pixelSize: isNxt ? 20 : 16
-            family: qfont.bold.name
-        }
-    }
+	Text {
+		id: portLabel
+		text: "Port"
+		anchors {
+			top: domoticzIP.bottom
+			topMargin: isNxt ? 10 : 8
+			horizontalCenter: set1.horizontalCenter
+		}
+		font {
+			pixelSize: isNxt ? 20 : 16
+			family: qfont.bold.name
+		}
+	}
 
-    YaLabel {
-        id: domoticzPort
-        buttonText:  ""
-        height: fieldHeightHeader
-        width: fieldWidhtHeader
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : false
-        textColor : "black"
-        buttonBorderWidth: 2
-        anchors {
-            top: portLabel.bottom
-            horizontalCenter: set1.horizontalCenter
-        }
-        onClicked: {
+	YaLabel {
+		id: domoticzPort
+		buttonText:  ""
+		height: fieldHeightHeader
+		width: fieldWidhtHeader
+		buttonActiveColor: activeColor
+		buttonHoverColor: hoverColor
+		buttonSelectedColor : selectedColor
+		enabled : true
+		selected : false
+		textColor : "black"
+		buttonBorderWidth: 2
+		anchors {
+			top: portLabel.bottom
+			horizontalCenter: set1.horizontalCenter
+		}
+		onClicked: {
 			qkeyboard.open("The IP port of the Domoticz server", domoticzPort.buttonText, saveipPort)
-        }
-    }
+		}
+	}
 
 // ------------------------------------------------------- Interval
 
-    Text {
-        id: intervalLabel
-        text: "Page Scroll Interval"
-        anchors {
-            top: parent.top
-            horizontalCenter: set2.horizontalCenter
-        }
-        font {
-            pixelSize: isNxt ? 20 : 16
-            family: qfont.bold.name
-        }
-    }
+	Text {
+		id: intervalLabel
+		text: "Page Scroll Interval"
+		anchors {
+			top: parent.top
+			horizontalCenter: set2.horizontalCenter
+		}
+		font {
+			pixelSize: isNxt ? 20 : 16
+			family: qfont.bold.name
+		}
+	}
 
-    YaLabel {
-        id: domoticzInterval
-        buttonText:  ""
-        height: fieldHeightHeader
-        width: fieldWidhtHeader
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : false
-        textColor : "black"
-        buttonBorderWidth: 2
-        anchors {
-            top: intervalLabel.bottom
-            horizontalCenter: set2.horizontalCenter
-        }
-        onClicked: {
+	YaLabel {
+		id: domoticzInterval
+		buttonText:  ""
+		height: fieldHeightHeader
+		width: fieldWidhtHeader
+		buttonActiveColor: activeColor
+		buttonHoverColor: hoverColor
+		buttonSelectedColor : selectedColor
+		enabled : true
+		selected : false
+		textColor : "black"
+		buttonBorderWidth: 2
+		anchors {
+			top: intervalLabel.bottom
+			horizontalCenter: set2.horizontalCenter
+		}
+		onClicked: {
 			qkeyboard.open("The data refresh interval", domoticzInterval.buttonText, saveInterval)
-        }
-    }
+		}
+	}
 
 // ------------------------------------------------------- Show countdown
 
-    Text {
-        id: domoMonScrollText
-        text: "Scroll in Dim state"
-        anchors {
-            top: domoticzInterval.bottom
-            topMargin: isNxt ? 10 : 8
-            horizontalCenter: set2.horizontalCenter
-        }
-        font {
-            pixelSize: isNxt ? 20 : 16
-            family: qfont.bold.name
-        }
-    }
+	Text {
+		id: domoMonScrollText
+		text: "Scroll in Dim state"
+		anchors {
+			top: domoticzInterval.bottom
+			topMargin: isNxt ? 10 : 8
+			horizontalCenter: set2.horizontalCenter
+		}
+		font {
+			pixelSize: isNxt ? 20 : 16
+			family: qfont.bold.name
+		}
+	}
 
-    YaLabel {
-        id: domoMonFreezeScroll
-        buttonText:  ""
-        height: fieldHeightHeader
-        width: fieldWidhtHeader
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : false
-        textColor : "black"
-        buttonBorderWidth: 2
-        anchors {
-            top: domoMonScrollText.bottom
-            horizontalCenter: set2.horizontalCenter
-        }
-        onClicked: {
-            app.freezeScroll = ! app.freezeScroll
-            refreshScreen()
-        }
-    }
+	YaLabel {
+		id: domoMonFreezeScroll
+		buttonText:  ""
+		height: fieldHeightHeader
+		width: fieldWidhtHeader
+		buttonActiveColor: activeColor
+		buttonHoverColor: hoverColor
+		buttonSelectedColor : selectedColor
+		enabled : true
+		selected : false
+		textColor : "black"
+		buttonBorderWidth: 2
+		anchors {
+			top: domoMonScrollText.bottom
+			horizontalCenter: set2.horizontalCenter
+		}
+		onClicked: {
+			app.freezeScroll = ! app.freezeScroll
+			refreshScreen()
+		}
+	}
 
 // ------------------------------------------------------- User
 
-    Text {
-        id: userLabel
-        text: "User"
-        anchors {
-            top: parent.top
-            horizontalCenter: set3.horizontalCenter
-        }
-        font {
-            pixelSize: isNxt ? 20 : 16
-            family: qfont.bold.name
-        }
-    }
+	Text {
+		id: userLabel
+		text: "User"
+		anchors {
+			top: parent.top
+			horizontalCenter: set3.horizontalCenter
+		}
+		font {
+			pixelSize: isNxt ? 20 : 16
+			family: qfont.bold.name
+		}
+	}
 
-    YaLabel {
-        id: domoticzUser
-        buttonText:  ""
-        height: fieldHeightHeader
-        width: fieldWidhtHeader
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : false
-        textColor : "black"
-        buttonBorderWidth: 2
-        anchors {
-            top: userLabel.bottom
-            horizontalCenter: set3.horizontalCenter
-        }
-        onClicked: {
+	YaLabel {
+		id: domoticzUser
+		buttonText:  ""
+		height: fieldHeightHeader
+		width: fieldWidhtHeader
+		buttonActiveColor: activeColor
+		buttonHoverColor: hoverColor
+		buttonSelectedColor : selectedColor
+		enabled : true
+		selected : false
+		textColor : "black"
+		buttonBorderWidth: 2
+		anchors {
+			top: userLabel.bottom
+			horizontalCenter: set3.horizontalCenter
+		}
+		onClicked: {
 			qkeyboard.open("The Username for the Domoticz server", domoticzUser.buttonText, saveUser)
-        }
-    }
+		}
+	}
 
 // ------------------------------------------------------- Password
 
-    Text {
-        id: passwordLabel
-        text: "Password"
-        anchors {
-            top: domoticzUser.bottom
-            topMargin: isNxt ? 10 : 8
-            horizontalCenter: set3.horizontalCenter
-        }
-        font {
-            pixelSize: isNxt ? 20 : 16
-            family: qfont.bold.name
-        }
-    }
+	Text {
+		id: passwordLabel
+		text: "Password"
+		anchors {
+			top: domoticzUser.bottom
+			topMargin: isNxt ? 10 : 8
+			horizontalCenter: set3.horizontalCenter
+		}
+		font {
+			pixelSize: isNxt ? 20 : 16
+			family: qfont.bold.name
+		}
+	}
 
-    YaLabel {
-        id: domoticzPassword
-        buttonText:  ""
-        height: fieldHeightHeader
-        width: fieldWidhtHeader
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : false
-        textColor : "black"
-        buttonBorderWidth: 2
-        anchors {
-            top: passwordLabel.bottom
-            horizontalCenter: set3.horizontalCenter
-        }
-        onClicked: {
+	YaLabel {
+		id: domoticzPassword
+		buttonText:  ""
+		height: fieldHeightHeader
+		width: fieldWidhtHeader
+		buttonActiveColor: activeColor
+		buttonHoverColor: hoverColor
+		buttonSelectedColor : selectedColor
+		enabled : true
+		selected : false
+		textColor : "black"
+		buttonBorderWidth: 2
+		anchors {
+			top: passwordLabel.bottom
+			horizontalCenter: set3.horizontalCenter
+		}
+		onClicked: {
 			qkeyboard.open("The password for the Domoticz server", app.pwd, savePwd)
-        }
-    }
+		}
+	}
 
 // ------------------------------------------------------- Rectangles
 
   Rectangle {
-      id:     set1
-      width:  setWidth
-      height: setHeight
-      color:  setColor
-      radius: 5
+	  id:     set1
+	  width:  setWidth
+	  height: setHeight
+	  color:  setColor
+	  radius: 5
   		anchors {
-            left:       parent.left
-            top:        domoticzPort.bottom
-            topMargin:  isNxt ? 20 : 16
-            leftMargin: isNxt ? 30 : 24
+			left:       parent.left
+			top:        domoticzPort.bottom
+			topMargin:  isNxt ? 20 : 16
+			leftMargin: isNxt ? 30 : 24
   		}
-        border {
-            width : 1
-        }
+		border {
+			width : 1
+		}
   }
 
   Rectangle {
-      id:     set2
-      width:  setWidth
-      height: setHeight
-      color:  setColor
-      radius: 5
+	  id:     set2
+	  width:  setWidth
+	  height: setHeight
+	  color:  setColor
+	  radius: 5
   		anchors {
   		  horizontalCenter: parent.horizontalCenter
-          top:        set1.top
+		  top:        set1.top
   		}
-        border {
-            width : 1
-        }
+		border {
+			width : 1
+		}
   }
 
   Rectangle {
-      id:     set3
-      width:  setWidth
-      height: setHeight
-      color:  setColor
-      radius: 5
+	  id:     set3
+	  width:  setWidth
+	  height: setHeight
+	  color:  setColor
+	  radius: 5
   		anchors {
   		  right:       parent.right
-          top:        set1.top
-        rightMargin: isNxt ? 30 : 24
+		  top:        set1.top
+		rightMargin: isNxt ? 30 : 24
 
   		}
-        border {
-            width : 1
-        }
+		border {
+			width : 1
+		}
   }
-
-// ------------------------------------------------------- Message
-	
-	Text {
-		id: userpwdWarningText
-		text: "Note : User and/or Password change require a GUI restart"
-		anchors {
-            top: set1.bottom
-            topMargin: isNxt ? 10 : 8
-            horizontalCenter : set2.horizontalCenter
-		}
-		font {
-            pixelSize: isNxt ? 25 : 20
-			family: qfont.bold.name
-		}
-		color: "#ff0000"
-	}
 
 // ------------------------------------------------------- Idx block 1
 
-    Text {
-        id: idxText1
-        text: "idx"
-        anchors {
-            top: set1.top
-            topMargin: insetTopMargin
-            horizontalCenter: idx1Label.horizontalCenter
-        }
-        font {
-            pixelSize: isNxt ? 20 : 16
-            family: qfont.bold.name
-        }
-    }
+	Text {
+		id: idxText1
+		text: "idx"
+		anchors {
+			top: set1.top
+			topMargin: insetTopMargin
+			horizontalCenter: idx1Label.horizontalCenter
+		}
+		font {
+			pixelSize: isNxt ? 20 : 16
+			family: qfont.bold.name
+		}
+	}
 
 	YaLabel {
 		id: idx1Label
@@ -830,7 +813,7 @@ Screen {
 		selected : false
 		textColor : "black"
 		anchors {
-            left: set1.left
+			left: set1.left
 			top: idxText1.bottom
 			topMargin: insetTopMargin
 			leftMargin: insetSideMargin
@@ -852,7 +835,7 @@ Screen {
 		selected : false
 		textColor : "black"
 		anchors {
-            left: set1.left
+			left: set1.left
 			top: idx1Label.bottom
 			topMargin: insetTopMargin
 			leftMargin: insetSideMargin
@@ -874,7 +857,7 @@ Screen {
 		selected : false
 		textColor : "black"
 		anchors {
-            left: set1.left
+			left: set1.left
 			top: idx2Label.bottom
 			topMargin: insetTopMargin
 			leftMargin: insetSideMargin
@@ -896,7 +879,7 @@ Screen {
 		selected : false
 		textColor : "black"
 		anchors {
-            left: set1.left
+			left: set1.left
 			top: idx3Label.bottom
 			topMargin: insetTopMargin
 			leftMargin: insetSideMargin
@@ -918,7 +901,7 @@ Screen {
 		selected : false
 		textColor : "black"
 		anchors {
-            left: set1.left
+			left: set1.left
 			top: idx4Label.bottom
 			topMargin: insetTopMargin
 			leftMargin: insetSideMargin
@@ -940,7 +923,7 @@ Screen {
 		selected : false
 		textColor : "black"
 		anchors {
-            left: set1.left
+			left: set1.left
 			top: idx5Label.bottom
 			topMargin: insetTopMargin
 			leftMargin: insetSideMargin
@@ -952,19 +935,19 @@ Screen {
 
 // ------------------------------------------------------- Idx block 2
 
-    Text {
-        id: idxText2
-        text: "idx"
-        anchors {
-            top: set2.top
-            topMargin: insetTopMargin
-            horizontalCenter: idx7Label.horizontalCenter
-        }
-        font {
-            pixelSize: isNxt ? 20 : 16
-            family: qfont.bold.name
-        }
-    }
+	Text {
+		id: idxText2
+		text: "idx"
+		anchors {
+			top: set2.top
+			topMargin: insetTopMargin
+			horizontalCenter: idx7Label.horizontalCenter
+		}
+		font {
+			pixelSize: isNxt ? 20 : 16
+			family: qfont.bold.name
+		}
+	}
 
 	YaLabel {
 		id: idx7Label
@@ -978,7 +961,7 @@ Screen {
 		selected : false
 		textColor : "black"
 		anchors {
-            left: set2.left
+			left: set2.left
 			top: idxText2.bottom
 			topMargin: insetTopMargin
 			leftMargin: insetSideMargin
@@ -1000,7 +983,7 @@ Screen {
 		selected : false
 		textColor : "black"
 		anchors {
-            left: set2.left
+			left: set2.left
 			top: idx7Label.bottom
 			topMargin: insetTopMargin
 			leftMargin: insetSideMargin
@@ -1022,7 +1005,7 @@ Screen {
 		selected : false
 		textColor : "black"
 		anchors {
-            left: set2.left
+			left: set2.left
 			top: idx2Label.bottom
 			topMargin: insetTopMargin
 			leftMargin: insetSideMargin
@@ -1044,7 +1027,7 @@ Screen {
 		selected : false
 		textColor : "black"
 		anchors {
-            left: set2.left
+			left: set2.left
 			top: idx3Label.bottom
 			topMargin: insetTopMargin
 			leftMargin: insetSideMargin
@@ -1066,7 +1049,7 @@ Screen {
 		selected : false
 		textColor : "black"
 		anchors {
-            left: set2.left
+			left: set2.left
 			top: idx4Label.bottom
 			topMargin: insetTopMargin
 			leftMargin: insetSideMargin
@@ -1088,7 +1071,7 @@ Screen {
 		selected : false
 		textColor : "black"
 		anchors {
-            left: set2.left
+			left: set2.left
 			top: idx5Label.bottom
 			topMargin: insetTopMargin
 			leftMargin: insetSideMargin
@@ -1100,19 +1083,19 @@ Screen {
 
 // ------------------------------------------------------- Idx block 3
 
-    Text {
-        id: idxText3
-        text: "idx"
-        anchors {
-            top: set3.top
-            topMargin: insetTopMargin
-            horizontalCenter: idx13Label.horizontalCenter
-        }
-        font {
-            pixelSize: isNxt ? 20 : 16
-            family: qfont.bold.name
-        }
-    }
+	Text {
+		id: idxText3
+		text: "idx"
+		anchors {
+			top: set3.top
+			topMargin: insetTopMargin
+			horizontalCenter: idx13Label.horizontalCenter
+		}
+		font {
+			pixelSize: isNxt ? 20 : 16
+			family: qfont.bold.name
+		}
+	}
 
 	YaLabel {
 		id: idx13Label
@@ -1126,7 +1109,7 @@ Screen {
 		selected : false
 		textColor : "black"
 		anchors {
-            left: set3.left
+			left: set3.left
 			top: idxText3.bottom
 			topMargin: insetTopMargin
 			leftMargin: insetSideMargin
@@ -1148,7 +1131,7 @@ Screen {
 		selected : false
 		textColor : "black"
 		anchors {
-            left: set3.left
+			left: set3.left
 			top: idx13Label.bottom
 			topMargin: insetTopMargin
 			leftMargin: insetSideMargin
@@ -1170,7 +1153,7 @@ Screen {
 		selected : false
 		textColor : "black"
 		anchors {
-            left: set3.left
+			left: set3.left
 			top: idx2Label.bottom
 			topMargin: insetTopMargin
 			leftMargin: insetSideMargin
@@ -1192,7 +1175,7 @@ Screen {
 		selected : false
 		textColor : "black"
 		anchors {
-            left: set3.left
+			left: set3.left
 			top: idx3Label.bottom
 			topMargin: insetTopMargin
 			leftMargin: insetSideMargin
@@ -1214,7 +1197,7 @@ Screen {
 		selected : false
 		textColor : "black"
 		anchors {
-            left: set3.left
+			left: set3.left
 			top: idx4Label.bottom
 			topMargin: insetTopMargin
 			leftMargin: insetSideMargin
@@ -1236,7 +1219,7 @@ Screen {
 		selected : false
 		textColor : "black"
 		anchors {
-            left: set3.left
+			left: set3.left
 			top: idx5Label.bottom
 			topMargin: insetTopMargin
 			leftMargin: insetSideMargin
@@ -1248,20 +1231,20 @@ Screen {
 
 // ------------------------------------------------------- Device block 1
 
-    Text {
-        id: nameText1
-        text: "Name"
-        anchors {
-            top: set1.top
-            topMargin: insetTopMargin
-            horizontalCenter: device1Label.horizontalCenter
-        }
-        font {
-            pixelSize: isNxt ? 20 : 16
-            family: qfont.bold.name
-        }
-    }
-	
+	Text {
+		id: nameText1
+		text: "Name"
+		anchors {
+			top: set1.top
+			topMargin: insetTopMargin
+			horizontalCenter: device1Label.horizontalCenter
+		}
+		font {
+			pixelSize: isNxt ? 20 : 16
+			family: qfont.bold.name
+		}
+	}
+
 	YaLabel {
 		id: device1Label
 		buttonText:  ""
@@ -1270,12 +1253,12 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
-        buttonDisabledColor : disabledColor
+		buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
 		anchors {
-            right: set1.right
+			right: set1.right
 			top: nameText1.bottom
 			topMargin: insetTopMargin
 			rightMargin: insetSideMargin
@@ -1293,12 +1276,12 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
-        buttonDisabledColor : disabledColor
+		buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
 		anchors {
-            right: set1.right
+			right: set1.right
 			top: device1Label.bottom
 			topMargin: insetTopMargin
 			rightMargin: insetSideMargin
@@ -1316,12 +1299,12 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
-        buttonDisabledColor : disabledColor
+		buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
 		anchors {
-            right: set1.right
+			right: set1.right
 			top: device2Label.bottom
 			topMargin: insetTopMargin
 			rightMargin: insetSideMargin
@@ -1339,12 +1322,12 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
-        buttonDisabledColor : disabledColor
+		buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
 		anchors {
-            right: set1.right
+			right: set1.right
 			top: device3Label.bottom
 			topMargin: insetTopMargin
 			rightMargin: insetSideMargin
@@ -1362,12 +1345,12 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
-        buttonDisabledColor : disabledColor
+		buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
 		anchors {
-            right: set1.right
+			right: set1.right
 			top: device4Label.bottom
 			topMargin: insetTopMargin
 			rightMargin: insetSideMargin
@@ -1385,12 +1368,12 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
-        buttonDisabledColor : disabledColor
+		buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
 		anchors {
-            right: set1.right
+			right: set1.right
 			top: device5Label.bottom
 			topMargin: insetTopMargin
 			rightMargin: insetSideMargin
@@ -1402,20 +1385,20 @@ Screen {
 
 // ------------------------------------------------------- Device block 2
 
-    Text {
-        id: nameText2
-        text: "Name"
-        anchors {
-            top: set2.top
-            topMargin: insetTopMargin
-            horizontalCenter: device7Label.horizontalCenter
-        }
-        font {
-            pixelSize: isNxt ? 20 : 16
-            family: qfont.bold.name
-        }
-    }
-	
+	Text {
+		id: nameText2
+		text: "Name"
+		anchors {
+			top: set2.top
+			topMargin: insetTopMargin
+			horizontalCenter: device7Label.horizontalCenter
+		}
+		font {
+			pixelSize: isNxt ? 20 : 16
+			family: qfont.bold.name
+		}
+	}
+
 	YaLabel {
 		id: device7Label
 		buttonText:  ""
@@ -1424,12 +1407,12 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
-        buttonDisabledColor : disabledColor
+		buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
 		anchors {
-            right: set2.right
+			right: set2.right
 			top: nameText2.bottom
 			topMargin: insetTopMargin
 			rightMargin: insetSideMargin
@@ -1447,12 +1430,12 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
-        buttonDisabledColor : disabledColor
+		buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
 		anchors {
-            right: set2.right
+			right: set2.right
 			top: device7Label.bottom
 			topMargin: insetTopMargin
 			rightMargin: insetSideMargin
@@ -1470,12 +1453,12 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
-        buttonDisabledColor : disabledColor
+		buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
 		anchors {
-            right: set2.right
+			right: set2.right
 			top: device2Label.bottom
 			topMargin: insetTopMargin
 			rightMargin: insetSideMargin
@@ -1493,12 +1476,12 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
-        buttonDisabledColor : disabledColor
+		buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
 		anchors {
-            right: set2.right
+			right: set2.right
 			top: device3Label.bottom
 			topMargin: insetTopMargin
 			rightMargin: insetSideMargin
@@ -1516,12 +1499,12 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
-        buttonDisabledColor : disabledColor
+		buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
 		anchors {
-            right: set2.right
+			right: set2.right
 			top: device4Label.bottom
 			topMargin: insetTopMargin
 			rightMargin: insetSideMargin
@@ -1539,12 +1522,12 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
-        buttonDisabledColor : disabledColor
+		buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
 		anchors {
-            right: set2.right
+			right: set2.right
 			top: device5Label.bottom
 			topMargin: insetTopMargin
 			rightMargin: insetSideMargin
@@ -1556,20 +1539,20 @@ Screen {
 
 // ------------------------------------------------------- Device block 3
 
-    Text {
-        id: nameText3
-        text: "Name"
-        anchors {
-            top: set3.top
-            topMargin: insetTopMargin
-            horizontalCenter: device13Label.horizontalCenter
-        }
-        font {
-            pixelSize: isNxt ? 20 : 16
-            family: qfont.bold.name
-        }
-    }
-	
+	Text {
+		id: nameText3
+		text: "Name"
+		anchors {
+			top: set3.top
+			topMargin: insetTopMargin
+			horizontalCenter: device13Label.horizontalCenter
+		}
+		font {
+			pixelSize: isNxt ? 20 : 16
+			family: qfont.bold.name
+		}
+	}
+
 	YaLabel {
 		id: device13Label
 		buttonText:  ""
@@ -1578,12 +1561,12 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
-        buttonDisabledColor : disabledColor
+		buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
 		anchors {
-            right: set3.right
+			right: set3.right
 			top: nameText3.bottom
 			topMargin: insetTopMargin
 			rightMargin: insetSideMargin
@@ -1601,12 +1584,12 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
-        buttonDisabledColor : disabledColor
+		buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
 		anchors {
-            right: set3.right
+			right: set3.right
 			top: device13Label.bottom
 			topMargin: insetTopMargin
 			rightMargin: insetSideMargin
@@ -1624,12 +1607,12 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
-        buttonDisabledColor : disabledColor
+		buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
 		anchors {
-            right: set3.right
+			right: set3.right
 			top: device2Label.bottom
 			topMargin: insetTopMargin
 			rightMargin: insetSideMargin
@@ -1647,12 +1630,12 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
-        buttonDisabledColor : disabledColor
+		buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
 		anchors {
-            right: set3.right
+			right: set3.right
 			top: device3Label.bottom
 			topMargin: insetTopMargin
 			rightMargin: insetSideMargin
@@ -1670,12 +1653,12 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
-        buttonDisabledColor : disabledColor
+		buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
 		anchors {
-            right: set3.right
+			right: set3.right
 			top: device4Label.bottom
 			topMargin: insetTopMargin
 			rightMargin: insetSideMargin
@@ -1693,12 +1676,12 @@ Screen {
 		buttonActiveColor: activeColor
 		buttonHoverColor: hoverColor
 		buttonSelectedColor : selectedColor
-        buttonDisabledColor : disabledColor
+		buttonDisabledColor : disabledColor
 		enabled : true
 		selected : false
 		textColor : "black"
 		anchors {
-            right: set3.right
+			right: set3.right
 			top: device5Label.bottom
 			topMargin: insetTopMargin
 			rightMargin: insetSideMargin

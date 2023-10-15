@@ -54,7 +54,6 @@ To configure :
  - First enter your settings for user and password if you need these to access your Domoticz.
    ( When you need no user you can clear the fields by entering a single space or just leave the defaults in place )
  - After that enter the IP address and http port. ( default is 8080 )
- - ( When you want to change user and password after IP and port are ok you need to restart the GUI to re-login )
  - Now enter an idx of a Custom Sensor and the name of the Custom Sensor will be retrieved for you. Just wait...
  - When the idx does not exist it can not find the name and the name stays on wait...
  - You can change the name or just leave it for now. It may be too long for the tile and you may change it later.
